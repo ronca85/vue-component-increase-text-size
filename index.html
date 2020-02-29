@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue Component - increase text size</title>
+</head>
+<body>
+
+	<div id="app">
+		<div class="c-text-size-controller">
+			<button class="c-button c-button--less" v-on:click="decrement()">-</button>
+			<span class="c-text-size-controller__value">A</span>
+			<button class="c-button c-button--more" v-on:click="increment()">+</button>
+		</div>
+
+		<p v-bind:style="{ fontSize: pageTextSize + 'rem' }">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit.</p>
+
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+new Vue({
+	el: "#app",
+	data: {
+		pageTextSize: 1
+	},
+	methods: {
+		increment () {
+			this.pageTextSize = this.pageTextSize + 0.25
+		},
+		decrement () {
+			this.pageTextSize = this.pageTextSize - 0.25
+		}
+	}
+});
+</script>
+
+<style>
+.c-text-size-controller {
+	display: flex;
+	color: #fff;
+	font-family: "Helvetica Neue";
+	font-size: 18px;
+	letter-spacing: 0.25px;
+	line-height: 22px;
+}
+.c-text-size-controller__value {
+	background-color: #F0F1F5;
+	color: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 32px;
+	height: 32px;
+}
+.c-button {
+	border: none;
+	background-color: #041D44;
+	color: #fff;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+}
+.c-button:hover {
+	background-color: #0a45a4;
+}
+.c-button.disabled {
+	background-color: #0a45a4;
+	cursor: not-allowed;
+}
+</style>
+</body>
+</html>
