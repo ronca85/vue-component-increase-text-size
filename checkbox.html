@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue Component - increase text size</title>
+</head>
+<body>
+	<div id="app">
+
+		<ul>
+			<li v-for="(switchbox, index) in switchboxes">
+				<div
+					class="c-toggle"
+					:class="{'is-checked' : switchbox.checked}"
+					tabindex="0" 
+					role="toggle"
+					:aria-checked="switchbox.checked"
+					@click="switchbox.checked = !switchbox.checked"
+					@keyup.space="switchbox.checked = !switchbox.checked"
+					@keyup.enter="switchbox.checked = !switchbox.checked">
+					<span class="c-toggle__label">{{switchbox.label}}</span>
+					<div class="c-toggle__slide">
+						<div class="c-toggle__switch">
+							<div class="c-toggle__inner"></div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+new Vue({
+	el: "#app",
+	data: {
+		switchboxes: [
+			{ checked: false, label: "Dyslexic typography" },
+			{ checked: true, label: "High contrast" },
+		]
+	}
+})
+</script>
+
+<style>
+* {margin: 0;padding: 0;box-sizing: border-box;}
+.c-toggle {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #041D44;
+	font-family: "Helvetica Neue";
+	font-size: 18px;
+	line-height: 22px;
+	letter-spacing: 0.25px;
+	cursor: pointer;
+	padding: 15px 0;
+}
+.c-toggle.is-checked .c-toggle__inner {
+	transform: translateX(15px);
+}
+.c-toggle.is-checked .c-toggle__slide {
+	/* background-color: #041D44; */
+}
+.c-toggle__slide {
+	background-color: #fff;
+	border: solid 2px #041D44;
+	border-radius: 9999px;
+	width: 40px;
+	height: 26px;
+	position: relative;
+	transition: background-color 0.9s cubic-bezier(0.05, 1, 0.2, 1);
+	/* transform: scale(4); */
+}
+.c-toggle__switch {
+	border-radius: 9999px;
+	width: calc(100% - 6px);
+	height: 16px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.c-toggle__inner {
+	background-color: #fff;
+	width: 16px;
+	height: 16px;
+	border-radius: 9999px;
+	border: solid 2px #041D44;
+	transition: transform 0.9s cubic-bezier(0.05, 1, 0.2, 1);
+}
+</style>
+</body>
+</html>
